@@ -6,7 +6,13 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
 
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
+    author = models.ForeignKey(Author,  blank=True, null=True, on_delete=models.CASCADE)

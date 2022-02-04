@@ -1,6 +1,6 @@
 from django.test import TestCase
 from .serializers import ChoiceSerializer
-from .models import Question
+from .models import Question, Author
 from django.utils import timezone
 
 
@@ -8,6 +8,7 @@ class QuestionSerializerTestCase(TestCase):
     def test_question_serializer(self):
         self.maxDiff = None
         question = Question.objects.create(question_text='text', pub_date=timezone.now())
+        author = Author.objects.create(first_name='Joan', last_name='Rolling')
         choice_text, votes = 'something', 2
         data = {
             'choice_text': choice_text,
